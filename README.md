@@ -82,60 +82,14 @@ class Main {
 }
 ```
 ````
-## Teacher 
-## Link : https://my.newtonschool.co/playground/code/s86st68fimfo/
-## Code : 
-```
-import java.util.ArrayList;
-import java.util.*;
-import java.util.List;
 
-class Student implements Comparable<Student> {
-    int number;
-    int count;
+------------------
+------------------
+------------------
+## Permutation 1
+## Link: https://my.newtonschool.co/playground/code/x69xe6mvla3v/
+## Code:
 
-    public Student(int number, int count) {
-        this.number = number;
-        this.count = count;
-    }
-
-    @Override
-    public int compareTo(Student other) {
-        return this.count - other.count;
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        // Number of students
-       Scanner sc = new Scanner(System.in);
-       int N = sc.nextInt();
-       int [] records  = new int [N];
-       for(int i =0;i<N;i++)
-       {
-           records[i] = sc.nextInt();
-       }
-
-        // Create a list of students
-        List<Student> students = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            students.add(new Student(i + 1, records[i]));
-        }
-
-        // Sort the list of students in ascending order based on the number of students present
-        // when they entered the classroom
-        Collections.sort(students);
-
-        // Print the student numbers in the order in which the students entered the classroom
-        for (Student student : students) {
-            System.out.print(student.number+" ");
-        }
-    }
-}
-```
-## Count duplicates 
-## Link : https://my.newtonschool.co/playground/code/rcvh8m0du828/
-## Code : 
 ```
 import java.io.*; // for handling input/output
 import java.util.*; // contains Collections framework
@@ -143,39 +97,52 @@ import java.util.*; // contains Collections framework
 // don't change the name of this class
 // you can add inner classes if needed
 class Main {
-    public static void main (String[] args) {
-        // Your code here
-        //HashMap<Integer, Integer> hm=new HashMap<>();
-        Scanner sc=new Scanner(System.in);
-        int N=sc.nextInt();
-        int[] arr=new int[N];
-        int i=0;
-        for(i=0;i<N;i++)
-        {
-            arr[i]=sc.nextInt();
-
-        }
-        HashMap<Integer, Integer> hm=new HashMap<>();
-        for(i=0;i<N;i++)
-        {
-            if(hm.containsKey(arr[i])){
-                Integer pre=hm.get(arr[i]);
-                hm.put(arr[i], pre + 1);
-
+    public static void main (String[] args) throws IOException {
+        BufferedReader br  = new BufferedReader(new InputStreamReader(System.in));
+        int t = 1;
+        while(t-->0){
+            String S = br.readLine().trim();
+            solution obj = new solution();
+            List<String> ans = obj.find_permutation(S);
+            for(int i=0; i<ans.size(); i++){
+                System.out.print(ans.get(i)+" ");
             }
-            else
-            {
-                hm.put(arr[i],1);
-            }
+            System.out.println();
+        }
 
+             // Your code here
+    }
+}
+
+class solution{
+    public List<String> find_permutation(String S){
+
+        List<String> arr = new ArrayList<>();
+        printPerm(0, S.length()-1, S, arr);
+        HashSet<String> h1 = new HashSet<>(arr);
+        List<String> arr1 = new ArrayList<>(h1);
+        Collections.sort(arr1);
+        return arr1;
+    }
+    public static void printPerm(int l, int r, String S, List<String > arr){
+        if(l==r){
+            arr.add(S);
+            return;
         }
-        for(Integer n : hm.keySet())
-        {
-            if(hm.get(n)>1)
-            {
-                System.out.println(n +" " + hm.get(n));
-            }
+        for(int i=l; i<=r; i++){
+            S = swap(S.toCharArray(), l, i);
+            printPerm(l+1, r, S, arr);
+            S = swap(S.toCharArray(), l, i);
         }
+    }
+    public static String swap(char[] strArr, int i, int j){
+        char temp = strArr[i];
+        strArr[i] = strArr[j];
+        strArr[j] = temp;
+        return new String(strArr);
     }
 }
 ```
+-----------
+-----------
+-----------
