@@ -133,3 +133,49 @@ public class Main {
     }
 }
 ```
+## Count duplicates 
+## Link : https://my.newtonschool.co/playground/code/rcvh8m0du828/
+## Code : 
+```
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+        // Your code here
+        //HashMap<Integer, Integer> hm=new HashMap<>();
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        int[] arr=new int[N];
+        int i=0;
+        for(i=0;i<N;i++)
+        {
+            arr[i]=sc.nextInt();
+
+        }
+        HashMap<Integer, Integer> hm=new HashMap<>();
+        for(i=0;i<N;i++)
+        {
+            if(hm.containsKey(arr[i])){
+                Integer pre=hm.get(arr[i]);
+                hm.put(arr[i], pre + 1);
+
+            }
+            else
+            {
+                hm.put(arr[i],1);
+            }
+
+        }
+        for(Integer n : hm.keySet())
+        {
+            if(hm.get(n)>1)
+            {
+                System.out.println(n +" " + hm.get(n));
+            }
+        }
+    }
+}
+```
