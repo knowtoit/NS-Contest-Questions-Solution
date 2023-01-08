@@ -143,6 +143,66 @@ class solution{
     }
 }
 ```
+
 -----------
 -----------
 -----------
+
+## Counting Zeroes to Ones (Contest)
+## Link : https://my.newtonschool.co/playground/code/ciayxn5s4p8l/
+## Code : 
+```
+#include <bits/stdc++.h> // header file includes every Standard library
+using namespace std;
+
+int main() {
+	// Your code here
+    int n, q;
+    cin>>n>>q;
+    set<int> row,col;
+    while(q--)
+    {
+        int i,j;
+        cin>>i>>j;
+        row.insert(i);
+        col.insert(j);
+        long ans=(n-row.size())*(n-col.size());
+        cout<<ans<<" ";
+    }
+    return 0;
+}
+```
+## Fruit Market (Contest)
+## Link : https://my.newtonschool.co/playground/code/795x92vayq6n/
+## Code : 
+```
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+      Scanner sc = new Scanner(System.in);
+      Long N = sc.nextLong();
+      int M = sc.nextInt();
+      int arr[] = new int[M];
+      for(int i =0;i<M;i++){
+          arr[i] = sc.nextInt();
+      }
+      Arrays.sort(arr);
+      int count =0;
+      for(int i =arr.length-1;i>=0;i--)
+      {
+          if(N>=0)
+          {
+              N -=arr[i];
+              count++;
+          }
+      }
+System.out.println(count);
+    }
+}
+```
+
+
