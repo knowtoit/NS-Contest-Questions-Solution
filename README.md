@@ -82,3 +82,54 @@ class Main {
 }
 ```
 ````
+## Teacher 
+## Link : https://my.newtonschool.co/playground/code/s86st68fimfo/
+## Code : 
+```
+import java.util.ArrayList;
+import java.util.*;
+import java.util.List;
+
+class Student implements Comparable<Student> {
+    int number;
+    int count;
+
+    public Student(int number, int count) {
+        this.number = number;
+        this.count = count;
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return this.count - other.count;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Number of students
+       Scanner sc = new Scanner(System.in);
+       int N = sc.nextInt();
+       int [] records  = new int [N];
+       for(int i =0;i<N;i++)
+       {
+           records[i] = sc.nextInt();
+       }
+
+        // Create a list of students
+        List<Student> students = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            students.add(new Student(i + 1, records[i]));
+        }
+
+        // Sort the list of students in ascending order based on the number of students present
+        // when they entered the classroom
+        Collections.sort(students);
+
+        // Print the student numbers in the order in which the students entered the classroom
+        for (Student student : students) {
+            System.out.print(student.number+" ");
+        }
+    }
+}
+```
