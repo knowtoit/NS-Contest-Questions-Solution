@@ -204,5 +204,37 @@ System.out.println(count);
     }
 }
 ```
+## integer suffix
+## Link : https://my.newtonschool.co/playground/code/b7ver9lbw2z2/
+## code : 
 
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
 
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+        // Your code here
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        int arr[]=new int[N];
+        for(int i=0;i<N;i++)
+        arr[i]=sc.nextInt();
+        int X=sc.nextInt();
+        int count=0;
+        
+        String binOfX=Long.toString(X,2);
+        String[] arrBinary=new String[N];
+        for(int i=0;i<N;i++)
+        arrBinary[i]=Integer.toString(arr[i],2);
+        for(String bi : arrBinary)
+        {
+            if(bi.endsWith(binOfX)){
+                count++;
+            }
+        }
+ 
+        System.out.println(count);
+    }
+}
