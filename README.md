@@ -143,7 +143,229 @@ class solution{
     }
 }
 ```
+Home Advantage
+Link : https://my.newtonschool.co/playground/code/tji72sdv9zzw/
+```
+import java.io.*;
 
+import java.util.*;
+public class Main {
+    private static int upper_bound(Integer arr[],int n, int key)
+
+    {
+
+        int l=0,r=n-1;
+
+        int ans=n;
+
+        while(l<=r){
+
+            int i=(l+r)/2;
+
+            if(arr[i] > key){
+
+                ans=i;
+
+                r=i-1;
+
+            }
+
+            else l=i+1;
+
+        }
+
+        return ans;
+
+    }
+
+    
+
+    public static void main(String[] args) {
+
+        
+
+        InputStream inputStream = System.in;
+
+        OutputStream outputStream = System.out;
+
+        InputReader in = new InputReader(inputStream);
+
+        OutputWriter out = new OutputWriter(outputStream);
+
+        
+
+        int n=Integer.parseInt(in.next());
+
+       
+
+        Integer a[] = new Integer[n];
+
+        Integer c[] = new Integer[n];
+
+        for(int t=0;t<n;t++){
+
+            a[t] = Integer.parseInt(in.next());
+
+            c[t]=a[t];
+
+        }
+
+        Integer b[] = new Integer[n];
+
+        for(int t=0;t<n;t++){
+
+            b[t] = Integer.parseInt(in.next());
+
+        }
+
+        
+
+        Arrays.sort(c);
+
+        
+
+        
+
+        for(int i=0;i<n;i++){
+
+            int x = upper_bound(c,n,a[i] + b[i]);
+
+            x--;
+
+            out.print(x+" ");
+
+        }
+
+       
+
+        out.close();
+
+    }
+
+
+
+    
+
+    static class InputReader {
+
+        BufferedReader reader;
+
+        StringTokenizer tokenizer;
+
+        public InputReader(InputStream stream) {
+
+            reader = new BufferedReader(new InputStreamReader(stream), 32768);
+
+            tokenizer = null;
+
+        }
+
+
+
+        public String next() {
+
+            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+
+                try {
+
+                    tokenizer = new StringTokenizer(reader.readLine());
+
+                } catch (IOException e) {
+
+                    throw new RuntimeException(e);
+
+                }
+
+            }
+
+            return tokenizer.nextToken();
+
+        }
+
+
+
+        public int nextInt() {
+
+            return Integer.parseInt(next());
+
+        }
+
+
+
+    }
+
+
+
+    static class OutputWriter {
+
+        private final PrintWriter writer;
+
+
+
+        public OutputWriter(OutputStream outputStream) {
+
+            writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
+
+        }
+
+
+
+        public OutputWriter(Writer writer) {
+
+            this.writer = new PrintWriter(writer);
+
+        }
+
+
+
+        public void print(Object... objects) {
+
+            for (int i = 0; i < objects.length; i++) {
+
+                if (i != 0) {
+
+                    writer.print(' ');
+
+                }
+
+                writer.print(objects[i]);
+
+            }
+
+        }
+
+
+
+        public void println(Object... objects) {
+
+            print(objects);
+
+            writer.println();
+
+        }
+
+
+
+        public void close() {
+
+            writer.close();
+
+        }
+
+
+
+        public void println(int i) {
+
+            writer.println(i);
+
+        }
+
+
+
+    }
+
+}
+```
 -----------
 -----------
 -----------
@@ -256,6 +478,234 @@ class Main {
                       }else{
                         System.out.print("YES");
                       }
+    }
+}
+```
+Matrix Problem 
+Link : [
+](https://my.newtonschool.co/playground/code/6l5s7vp0v7ac/)
+```
+import java.io.*;
+import java.util.*;
+
+
+
+class Main {
+	public static void main (String[] args)throws IOException {
+
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                      String ar[] = br.readLine().split(" ");
+                      int n = Integer.parseInt(ar[0]);
+                      int k = Integer.parseInt(ar[1]);
+					  int a[][] = new int[n][n];
+					  int sum=0,one_c=0;
+                      for(int i=0;i<n;i++)
+                      {
+                          String arr[] = br.readLine().split(" ");
+						  sum=0;
+                          for(int j=0;j<n;j++)
+                          {
+                             int value=Integer.parseInt(arr[j]);
+							 if(value==1)
+							 one_c++;
+							 sum=sum+value;
+							 a[i][j]=sum;
+                          }
+                      }
+					  for(int j=0;j<n;j++)
+					  {
+						  sum=0;
+                          for(int i=0;i<n;i++)
+						  {
+                            sum=sum+a[i][j];
+							a[i][j]=sum;
+						  }
+					  }
+
+					if(k>=one_c)
+					  {
+
+						  System.out.println(n);
+
+					  }
+					else {
+						int ans = 1;
+						for(int len=1;len<=n;len++)
+						{
+							boolean flag= false;
+						for(int i=len;i<n;i++)
+						{
+							for(int j=len;j<n;j++)
+							{
+								if(j-i==0)
+								{
+                                  if(a[i][j]<=k)
+								  {
+									  ans = Math.max(ans,ans+1);
+									  flag=true;
+									  break;
+								  }
+
+								}
+								else if(j>i)
+								{
+									if(i==ans)
+									{
+										if(a[i][j]-a[i][j-ans-1]<=k)
+										{
+											ans=Math.max(ans,ans+1);
+											flag = true;
+											break;
+										}
+									}
+									else {
+										if(a[i][j]-a[i][j-ans-1]-a[i-ans-1][j]+a[i-ans-1][j-ans-1] <=k)
+                                         {
+											 ans = Math.max(ans,ans+1);
+											 flag=true;
+											 break;
+										 }
+									}
+								}
+								 if(i>ans) {
+
+									if(j==ans)
+									{
+										if(a[i][j]-a[i-ans-1][j]<=k)
+										{
+											ans=Math.max(ans,ans+1);
+											flag = true;
+											break;
+										}
+									}
+									else {
+										if(a[i][j]-a[i-ans-1][j]-a[i][j-ans-1]+a[i-ans-1][j-ans-1] <=k)
+                                         {
+											 ans = Math.max(ans,ans+1);
+											 flag=true;
+											 break;
+										 }
+									}
+
+								}
+							}
+							if(flag==true) break;
+						}
+						if(flag==false) break;
+					}
+					System.out.println(ans);
+				}
+
+	}
+}
+```[
+](https://my.newtonschool.co/playground/code/6l5s7vp0v7ac/)
+-------------
+------------
+Assign Mice to Holes
+Link : https://my.newtonschool.co/playground/code/e88c0tl3tomo/
+```
+for i in range(int(input())):
+    N = int(input())
+    arr = [int(i) for i in input().split()]
+    arr1 = [int(i) for i in input().split()]
+    arr.sort()
+    arr1.sort()
+
+    time = 0
+    for i,j in zip(arr,arr1):
+        x = abs(i-j)
+        if x>time: time = x
+
+    print(time)
+```
+----
+Minimum number to make median X
+Link : https://my.newtonschool.co/playground/code/9ufiodw4j9wk/
+```
+java
+
+for i in range(int(input())):
+	n,k=map(int,input().split())
+	x=list(map(int,input().split()))
+	count,large_count,small_count,small,large=0,0,0,-1,10000000
+	for i in x:
+		if i==k:
+			count+=1
+		if i>k:
+			large_count+=1
+			large=min(large,i)
+		if i<k:
+			small_count+=1
+			small=max(small,i)
+	ans=abs(large_count-small_count)
+	if(count>0):
+		if(count>=n/2):
+			print(0)
+		else:
+			print(ans)
+	elif(small_count==large_count):
+		if((large+small)//2==k):
+			print(0)
+		else:
+			print(1)
+	elif(small_count==0 or large_count==0):
+		print(n)
+	else:
+		t=2*k-small
+		if(t==large):
+			print(ans)
+		elif(t<large):
+			large_count+=1
+			print(min(ans+1,abs(large_count-small_count)+1))
+		elif(t>large):
+			l=2*k-large
+			if(l>small):
+				small_count+=1
+				print(min(ans+1,abs(large_count-small_count)+1))
+			else:
+				print(ans+1)
+```
+----
+Integer Modification (contest)
+Link : https://my.newtonschool.co/playground/code/ws9nzs8a6inm/
+```
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int[] a = new int[n];
+        int ans = 0;
+        Map<Integer, Integer> mp = new HashMap<>();
+        
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+            if (mp.containsKey(a[i])) {
+                mp.put(a[i], mp.get(a[i]) + 1);
+            } else {
+                mp.put(a[i], 1);
+            }
+        }
+        
+        List<Integer> res = new ArrayList<>();
+        
+        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {
+            res.add(entry.getValue());
+        }
+        
+        Collections.sort(res, Collections.reverseOrder());
+        
+        while (res.size() > k) {
+            ans += res.get(res.size() - 1);
+            res.remove(res.size() - 1);
+        }
+        System.out.println(ans);
     }
 }
 ```
